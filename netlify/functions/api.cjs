@@ -104,6 +104,10 @@ exports.handler = async function handler(event) {
       body: await response.text(),
     };
   } catch (error) {
+    console.error("BOT_API_BASE_URL proxy request failed", {
+      target: target.toString(),
+      error: error instanceof Error ? error.message : String(error),
+    });
     return {
       statusCode: 502,
       headers: { "Content-Type": "application/json" },
